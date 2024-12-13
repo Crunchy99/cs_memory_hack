@@ -45,14 +45,14 @@
            	int index = 99;
            	unsafe
            	{
-           		fixed(byte* bPtr = &qbytes[index * 16])
-           		{
-           			Quaternion* xp = (Quaternion*)(bPtr);
-           			static_retvalue_on_getter.X = xp->X;
-           			static_retvalue_on_getter.Y = xp->Y;
-           			static_retvalue_on_getter.Z = xp->Z;
-           			static_retvalue_on_getter.W = xp->W;
-           		}
+                fixed(byte* bPtr = &qbytes[index * 16])
+                {
+                    Quaternion* xp = (Quaternion*)(bPtr);
+                    static_retvalue_on_getter.X = xp->X;
+                    static_retvalue_on_getter.Y = xp->Y;
+                    static_retvalue_on_getter.Z = xp->Z;
+                    static_retvalue_on_getter.W = xp->W;
+                }
            	}
            	Debug.Assert(static_retvalue_on_getter.X == 100);
            	//return static_retvalue_on_getter;
