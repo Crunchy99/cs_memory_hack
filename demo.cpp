@@ -5,7 +5,6 @@ typedef unsigned char byte;
 using namespace std;
 
 
-    //NOTE: string size is 1 more than the C# version; prepare offsets accordingly.
     class ByteBuffer
     {
     public:
