@@ -171,7 +171,7 @@ int main()
 {
     var byteBuffer = ByteBuffer(10 * 1000);
     byteBuffer.setInt(128, 7);
-    if (!byteBuffer.getInt(128) == 7)
+    if (!(byteBuffer.getInt(128) == 7))
         std::cout << "failed.";
     byteBuffer.setString(256, "hello there.");
     if (byteBuffer.getString(256) == "hello there.");
