@@ -45,7 +45,7 @@ using namespace std;
             return;
         }
 
-        int getInt(int offset)
+        int getInt(int offset) const
         {
             int retv = 0;
             byte* ptr = &data[offset];
@@ -54,6 +54,10 @@ using namespace std;
                 retv = *iptr;
             }
             return retv;
+        }
+        int& getInt(int offset)
+        {
+            return (int&) *((int*)&data[offset]);
         }
         void setInt(int offset, int value)
         {
@@ -65,7 +69,7 @@ using namespace std;
             return;
         }
 
-        long getLong(int offset)
+        long getLong(int offset) const
         {
             long retv = 0;
             byte* ptr = &data[offset];
@@ -74,6 +78,10 @@ using namespace std;
                 retv = *iptr;
             }
             return retv;
+        }
+        long& getLong(int offset)
+        {
+            return (long&)*((long*)&data[offset]);
         }
         void setLong(int offset, long value)
         {
@@ -85,7 +93,7 @@ using namespace std;
             return;
         }
 
-        float getFloat(int offset)
+        float getFloat(int offset) const
         {
             float retv = 0;
             byte* ptr = &data[offset];
@@ -94,6 +102,10 @@ using namespace std;
                 retv = *iptr;
             }
             return retv;
+        }
+        float& getFloat(int offset)
+        {
+            return (float&)*((float*)&data[offset]);
         }
         void setFloat(int offset, float value)
         {
@@ -105,7 +117,7 @@ using namespace std;
             return;
         }
 
-        double getDouble(int offset)
+        double getDouble(int offset) const
         {
             double retv = 0;
             byte* ptr = &data[offset];
@@ -114,6 +126,10 @@ using namespace std;
                 retv = *iptr;
             }
             return retv;
+        }
+        double& getDouble(int offset)
+        {
+            return (double&)*((double*)&data[offset]);
         }
         void setDouble(int offset, double value)
         {
@@ -124,7 +140,7 @@ using namespace std;
             }
             return;
         }
-        char getChar(int offset)
+        char getChar(int offset) const
         {
             char retv = '\0';
             byte* ptr = &data[offset];
@@ -133,6 +149,10 @@ using namespace std;
                 retv = *iptr;
             }
             return retv;
+        }
+        char& getChar(int offset)
+        {
+            return (char&)*((char*)&data[offset]);
         }
         void setChar(int offset, char value)
         {
@@ -143,7 +163,7 @@ using namespace std;
             }
             return;
         }
-        bool getBool(int offset)
+        bool getBool(int offset) const
         {
             bool retv = false;
             byte* ptr = &data[offset];
@@ -152,6 +172,10 @@ using namespace std;
                 retv = (*iptr == 1);
             }
             return retv;
+        }
+        byte& getBool(int offset)
+        {
+            return (byte&)*((byte*)&data[offset]);
         }
         void setBool(int offset, bool value)
         {
@@ -171,6 +195,11 @@ int main()
 {
     var byteBuffer = ByteBuffer(10 * 1000);
     byteBuffer.setInt(128, 7);
+
+    int& intv = byteBuffer.getInt(128);
+    if (!(intv == 7))
+        std::cout << "failed.";
+
     if (!(byteBuffer.getInt(128) == 7))
         std::cout << "failed.";
     byteBuffer.setString(256, "hello there.");
