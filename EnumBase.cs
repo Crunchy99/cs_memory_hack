@@ -2,25 +2,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using BEPUphysics;
-using BEPUphysicsDemos;
-using BEPUphysicsDrawer;
-using BEPUutilities;
-using BEPUutilities.Threading;
-using Matrix = Microsoft.Xna.Framework.Matrix;
-using BMatrix = BEPUutilities.Matrix;
-using Vector2 = Microsoft.Xna.Framework.Vector2;
-using Vector3 = Microsoft.Xna.Framework.Vector3;
-using BVector3 = BEPUutilities.Vector3;
-using SpriteFontPlus;
-using Collada141;
-using BEPUphysicsDemos.AlternateMovement;
-using BQuaternion = BEPUutilities.Quaternion;
-using Quaternion = Microsoft.Xna.Framework.Quaternion;
 
 namespace game1
 {
