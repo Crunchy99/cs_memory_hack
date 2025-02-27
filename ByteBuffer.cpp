@@ -1,13 +1,13 @@
 #include "ByteBuffer.h"
 
 
-    ByteBuffer::ByteBuffer(int length)
+    ByteBuffer::ByteBuffer(long length)
     {
         data = new byte[length];
     }
 
 
-    string ByteBuffer::getString(int offset)
+    string ByteBuffer::getString(long offset)
     {
         string retv = "";
         byte* ptr = &data[offset];
@@ -22,7 +22,7 @@
         }
         return retv;
     }
-    void ByteBuffer::setString(int offset, string value)
+    void ByteBuffer::setString(long offset, string value)
     {
         byte* ptr = &data[offset];
         {
@@ -37,7 +37,7 @@
         return;
     }
 
-    int ByteBuffer::getInt(int offset) const
+    int ByteBuffer::getInt(long offset) const
     {
         int retv = 0;
         byte* ptr = &data[offset];
@@ -47,11 +47,11 @@
         }
         return retv;
     }
-    int& ByteBuffer::getInt(int offset)
+    int& ByteBuffer::getInt(long offset)
     {
         return (int&)*((int*)&data[offset]);
     }
-    void ByteBuffer::setInt(int offset, int value)
+    void ByteBuffer::setInt(long offset, int value)
     {
         byte* ptr = &data[offset];
         {
@@ -61,7 +61,7 @@
         return;
     }
 
-    long ByteBuffer::getLong(int offset) const
+    long ByteBuffer::getLong(long offset) const
     {
         long retv = 0;
         byte* ptr = &data[offset];
@@ -71,11 +71,11 @@
         }
         return retv;
     }
-    long& ByteBuffer::getLong(int offset)
+    long& ByteBuffer::getLong(long offset)
     {
         return (long&)*((long*)&data[offset]);
     }
-    void ByteBuffer::setLong(int offset, long value)
+    void ByteBuffer::setLong(long offset, long value)
     {
         byte* ptr = &data[offset];
         {
@@ -85,7 +85,7 @@
         return;
     }
 
-    float ByteBuffer::getFloat(int offset) const
+    float ByteBuffer::getFloat(long offset) const
     {
         float retv = 0;
         byte* ptr = &data[offset];
@@ -95,11 +95,11 @@
         }
         return retv;
     }
-    float& ByteBuffer::getFloat(int offset)
+    float& ByteBuffer::getFloat(long offset)
     {
         return (float&)*((float*)&data[offset]);
     }
-    void ByteBuffer::setFloat(int offset, float value)
+    void ByteBuffer::setFloat(long offset, float value)
     {
         byte* ptr = &data[offset];
         {
@@ -109,7 +109,7 @@
         return;
     }
 
-    double ByteBuffer::getDouble(int offset) const
+    double ByteBuffer::getDouble(long offset) const
     {
         double retv = 0;
         byte* ptr = &data[offset];
@@ -119,11 +119,11 @@
         }
         return retv;
     }
-    double& ByteBuffer::getDouble(int offset)
+    double& ByteBuffer::getDouble(long offset)
     {
         return (double&)*((double*)&data[offset]);
     }
-    void ByteBuffer::setDouble(int offset, double value)
+    void ByteBuffer::setDouble(long offset, double value)
     {
         byte* ptr = &data[offset];
         {
@@ -132,7 +132,7 @@
         }
         return;
     }
-    char ByteBuffer::getChar(int offset) const
+    char ByteBuffer::getChar(long offset) const
     {
         char retv = '\0';
         byte* ptr = &data[offset];
@@ -142,11 +142,11 @@
         }
         return retv;
     }
-    char& ByteBuffer::getChar(int offset)
+    char& ByteBuffer::getChar(long offset)
     {
         return (char&)*((char*)&data[offset]);
     }
-    void ByteBuffer::setChar(int offset, char value)
+    void ByteBuffer::setChar(long offset, char value)
     {
         byte* ptr = &data[offset];
         {
@@ -155,7 +155,7 @@
         }
         return;
     }
-    bool ByteBuffer::getBool(int offset) const
+    bool ByteBuffer::getBool(long offset) const
     {
         bool retv = false;
         byte* ptr = &data[offset];
@@ -165,11 +165,11 @@
         }
         return retv;
     }
-    byte& ByteBuffer::getBool(int offset)
+    byte& ByteBuffer::getBool(long offset)
     {
         return (byte&)*((byte*)&data[offset]);
     }
-    void ByteBuffer::setBool(int offset, bool value)
+    void ByteBuffer::setBool(long offset, bool value)
     {
         byte* ptr = &data[offset];
         {
@@ -183,75 +183,103 @@
 
     //-------------------------------------
 
-    Cpp::ByteBuffer::ByteBuffer(int length)
+    Cpp::ByteBuffer::ByteBuffer(long length)
     {
         m_native = new ::ByteBuffer(length);
     }
 
-    String^ Cpp::ByteBuffer::getString(int offset)
+    String^ Cpp::ByteBuffer::getString(long offset)
     {
         return gcnew String(m_native->getString(offset).c_str());
     }
-    void Cpp::ByteBuffer::setString(int offset, String^ value)
+    void Cpp::ByteBuffer::setString(long offset, String^ value)
     {
         byte* ptr = &m_native->data[offset];
         {
             char* cptr = (char*)ptr;
             int* szptr = (int*)ptr;
-            *szptr = GetStrLen(value);
-            for (int i = 0; i < GetStrLen(value); i++)
+            *szptr = (*value).Length;
+            for (int i = 0; i < (*value).Length; i++)
             {
-                cptr[sizeof(int) + i] = IndexStr(value, i);
+                cptr[sizeof(int) + i] = (*value)[i];
             }
         }
         return;
     }
-    int Cpp::ByteBuffer::getInt(int offset)
+    int Cpp::ByteBuffer::getInt(long offset)
     {
         return m_native->getInt(offset);
     }
-    void Cpp::ByteBuffer::setInt(int offset, int value)
+    void Cpp::ByteBuffer::setInt(long offset, int value)
     {
         m_native->setInt(offset, value);
     }
-    long Cpp::ByteBuffer::getLong(int offset)
+    long Cpp::ByteBuffer::getLong(long offset)
     {
         return m_native->getLong(offset);
     }
-    void Cpp::ByteBuffer::setLong(int offset, long value)
+    void Cpp::ByteBuffer::setLong(long offset, long value)
     {
         m_native->setLong(offset, value);
     }
-    float Cpp::ByteBuffer::getFloat(int offset)
+    float Cpp::ByteBuffer::getFloat(long offset)
     {
         return m_native->getFloat(offset);
     }
-    void Cpp::ByteBuffer::setFloat(int offset, float value)
+    void Cpp::ByteBuffer::setFloat(long offset, float value)
     {
         m_native->setFloat(offset, value);
     }
-    double Cpp::ByteBuffer::getDouble(int offset)
+    double Cpp::ByteBuffer::getDouble(long offset)
     {
         return m_native->getDouble(offset);
     }
-    void Cpp::ByteBuffer::setDouble(int offset, double value)
+    void Cpp::ByteBuffer::setDouble(long offset, double value)
     {
         m_native->setDouble(offset, value);
     }
-    char Cpp::ByteBuffer::getChar(int offset)
+    char Cpp::ByteBuffer::getChar(long offset)
     {
         return m_native->getChar(offset);
     }
-    void Cpp::ByteBuffer::setChar(int offset, char value)
+    void Cpp::ByteBuffer::setChar(long offset, char value)
     {
         m_native->setChar(offset, value);
     }
-    bool Cpp::ByteBuffer::getBool(int offset)
+    bool Cpp::ByteBuffer::getBool(long offset)
     {
         return m_native->getBool(offset);
     }
-    void Cpp::ByteBuffer::setBool(int offset, bool value)
+    void Cpp::ByteBuffer::setBool(long offset, bool value)
     {
         m_native->setBool(offset, value);
     }
 
+
+/*
+int main()
+{
+    var byteBuffer = ByteBuffer(10 * 1000);
+    byteBuffer.setInt(128, 7);
+
+    int& intv = byteBuffer.getInt(128);
+    if (!(intv == 7))
+        std::cout << "failed.";
+
+    if (!(byteBuffer.getInt(128) == 7))
+        std::cout << "failed.";
+    byteBuffer.setString(256, "hello there.");
+    if (byteBuffer.getString(256) == "hello there.");
+    std::cout << "succeeded.";
+
+ }
+
+ //C# test
+ {
+    var byteBuffer = new ByteBuffer(10 * 1000);
+    byteBuffer.setInt(128, 7);
+    Debug.Assert(byteBuffer.getInt(128) == 7);
+    byteBuffer.setString(256, "hello there.");
+    Debug.Assert(byteBuffer.getString(256) == "hello there.");
+}
+*/
