@@ -13,28 +13,28 @@ class ByteBuffer
 {
 public:
     byte* data;
-    ByteBuffer(int length);
+    ByteBuffer(long length);
 
-    string getString(int offset);
-    void setString(int offset, string value);
-    int getInt(int offset) const;
-    int& getInt(int offset);
-    void setInt(int offset, int value);
-    long getLong(int offset) const;
-    long& getLong(int offset);
-    void setLong(int offset, long value);
-    float getFloat(int offset) const;
-    float& getFloat(int offset);
-    void setFloat(int offset, float value);
-    double getDouble(int offset) const;
-    double& getDouble(int offset);
-    void setDouble(int offset, double value);
-    char getChar(int offset) const;
-    char& getChar(int offset);
-    void setChar(int offset, char value);
-    bool getBool(int offset) const;
-    byte& getBool(int offset);
-    void setBool(int offset, bool value);
+    string getString(long offset);
+    void setString(long offset, string value);
+    int getInt(long offset) const;
+    int& getInt(long offset);
+    void setInt(long offset, int value);
+    long getLong(long offset) const;
+    long& getLong(long offset);
+    void setLong(long offset, long value);
+    float getFloat(long offset) const;
+    float& getFloat(long offset);
+    void setFloat(long offset, float value);
+    double getDouble(long offset) const;
+    double& getDouble(long offset);
+    void setDouble(long offset, double value);
+    char getChar(long offset) const;
+    char& getChar(long offset);
+    void setChar(long offset, char value);
+    bool getBool(long offset) const;
+    byte& getBool(long offset);
+    void setBool(long offset, bool value);
 
 };
 
@@ -45,25 +45,25 @@ namespace Cpp
     {
     public:
         ::ByteBuffer* m_native;
-        ByteBuffer(int length);
+        ByteBuffer(long length);
 
-        static System::Func<String^, int>^ GetStrLen;
-        static System::Func<String^, int, char>^ IndexStr;
+        //static System::Func<String^, int>^ GetStrLen;
+        //static System::Func<String^, int, char>^ IndexStr;
 
-        String^ getString(int offset);
-        void setString(int offset, String^ value);
-        int getInt(int offset);
-        void setInt(int offset, int value);
-        long getLong(int offset);
-        void setLong(int offset, long value);
-        float getFloat(int offset);
-        void setFloat(int offset, float value);
-        double getDouble(int offset);
-        void setDouble(int offset, double value);
-        char getChar(int offset);
-        void setChar(int offset, char value);
-        bool getBool(int offset);
-        void setBool(int offset, bool value);
+        String^ getString(long offset);
+        void setString(long offset, String^ value);
+        int getInt(long offset);
+        void setInt(long offset, int value);
+        long getLong(long offset);
+        void setLong(long offset, long value);
+        float getFloat(long offset);
+        void setFloat(long offset, float value);
+        double getDouble(long offset);
+        void setDouble(long offset, double value);
+        char getChar(long offset);
+        void setChar(long offset, char value);
+        bool getBool(long offset);
+        void setBool(long offset, bool value);
     };
 
 }
