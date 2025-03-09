@@ -13,20 +13,34 @@ namespace game1
 	
 	public partial class Game1
 	{
-		public class EnumBase32<T>
+		
+		public class EnumBase<T>
+		{
+			public static int _currEnum = 0;
+			public static int next() { return ++_currEnum; }
+			public static int CycleEnumValue(int value, int enumCount)
+			{
+				var ret = value + 1;
+				if(ret < enumCount)
+					return ret;
+				return 0;
+			}
+		}
+		
+		public class FlagsBase32<T>
 		{
 			public int value;
 			public static int _currShift = -1;
 			public static int next() { return 1 << ++_currShift; }
 		}
-		public class EnumBase64<T>
+		public class FlagsBase64<T>
 		{
 			public long value;
 			public static int _currShift = -1;
 			public static long next() { return 1L << ++_currShift; }
 		}
 		
-		public class TestEnum: EnumBase32<TestEnum>
+		public class TestFlags: FlagsBase32<TestFlags>
 		{
 			public static int first = next();
 			public static int second = next();
@@ -34,11 +48,11 @@ namespace game1
 			
 			public static void Test()
 			{
-	           	var item1 = TestEnum.first | TestEnum.second;
-	           	var item2 = TestEnum.second;
+	           	var item1 = TestFlags.first | TestFlags.second;
+	           	var item2 = TestFlags.second;
 	           	if(item1 == item2)
 	           		throw new Exception("failed");
-	           	if(!item1.hasFlag(TestEnum.second))
+	           	if(!item1.hasFlag(TestFlags.second))
 	           		throw new Exception("failed");
 			}
 		}
