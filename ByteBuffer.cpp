@@ -1,13 +1,13 @@
 #include "ByteBuffer.h"
 
 
-    ByteBuffer::ByteBuffer(long length)
+    ByteBuffer::ByteBuffer(ulong length)
     {
         data = new byte[length];
     }
 
 
-    string ByteBuffer::getString(long offset)
+    string ByteBuffer::getString(ulong offset)
     {
         string retv = "";
         byte* ptr = &data[offset];
@@ -22,7 +22,7 @@
         }
         return retv;
     }
-    void ByteBuffer::setString(long offset, string value)
+    void ByteBuffer::setString(ulong offset, string value)
     {
         byte* ptr = &data[offset];
         {
@@ -37,7 +37,7 @@
         return;
     }
 
-    int ByteBuffer::getInt(long offset) const
+    int ByteBuffer::getInt(ulong offset) const
     {
         int retv = 0;
         byte* ptr = &data[offset];
@@ -47,11 +47,11 @@
         }
         return retv;
     }
-    int& ByteBuffer::getInt(long offset)
+    int& ByteBuffer::getInt(ulong offset)
     {
         return (int&)*((int*)&data[offset]);
     }
-    void ByteBuffer::setInt(long offset, int value)
+    void ByteBuffer::setInt(ulong offset, int value)
     {
         byte* ptr = &data[offset];
         {
@@ -61,21 +61,21 @@
         return;
     }
 
-    long ByteBuffer::getLong(long offset) const
+    long ByteBuffer::getLong(ulong offset) const
     {
         long retv = 0;
         byte* ptr = &data[offset];
         {
-            long* iptr = (long*)ptr;
+            ulong* iptr = (ulong*)ptr;
             retv = *iptr;
         }
         return retv;
     }
-    long& ByteBuffer::getLong(long offset)
+    long& ByteBuffer::getLong(ulong offset)
     {
         return (long&)*((long*)&data[offset]);
     }
-    void ByteBuffer::setLong(long offset, long value)
+    void ByteBuffer::setLong(ulong offset, long value)
     {
         byte* ptr = &data[offset];
         {
@@ -85,7 +85,7 @@
         return;
     }
 
-    float ByteBuffer::getFloat(long offset) const
+    float ByteBuffer::getFloat(ulong offset) const
     {
         float retv = 0;
         byte* ptr = &data[offset];
@@ -95,11 +95,11 @@
         }
         return retv;
     }
-    float& ByteBuffer::getFloat(long offset)
+    float& ByteBuffer::getFloat(ulong offset)
     {
         return (float&)*((float*)&data[offset]);
     }
-    void ByteBuffer::setFloat(long offset, float value)
+    void ByteBuffer::setFloat(ulong offset, float value)
     {
         byte* ptr = &data[offset];
         {
@@ -109,7 +109,7 @@
         return;
     }
 
-    double ByteBuffer::getDouble(long offset) const
+    double ByteBuffer::getDouble(ulong offset) const
     {
         double retv = 0;
         byte* ptr = &data[offset];
@@ -119,11 +119,11 @@
         }
         return retv;
     }
-    double& ByteBuffer::getDouble(long offset)
+    double& ByteBuffer::getDouble(ulong offset)
     {
         return (double&)*((double*)&data[offset]);
     }
-    void ByteBuffer::setDouble(long offset, double value)
+    void ByteBuffer::setDouble(ulong offset, double value)
     {
         byte* ptr = &data[offset];
         {
@@ -132,7 +132,7 @@
         }
         return;
     }
-    char ByteBuffer::getChar(long offset) const
+    char ByteBuffer::getChar(ulong offset) const
     {
         char retv = '\0';
         byte* ptr = &data[offset];
@@ -142,11 +142,11 @@
         }
         return retv;
     }
-    char& ByteBuffer::getChar(long offset)
+    char& ByteBuffer::getChar(ulong offset)
     {
         return (char&)*((char*)&data[offset]);
     }
-    void ByteBuffer::setChar(long offset, char value)
+    void ByteBuffer::setChar(ulong offset, char value)
     {
         byte* ptr = &data[offset];
         {
@@ -155,7 +155,7 @@
         }
         return;
     }
-    bool ByteBuffer::getBool(long offset) const
+    bool ByteBuffer::getBool(ulong offset) const
     {
         bool retv = false;
         byte* ptr = &data[offset];
@@ -165,11 +165,11 @@
         }
         return retv;
     }
-    byte& ByteBuffer::getBool(long offset)
+    byte& ByteBuffer::getBool(ulong offset)
     {
         return (byte&)*((byte*)&data[offset]);
     }
-    void ByteBuffer::setBool(long offset, bool value)
+    void ByteBuffer::setBool(ulong offset, bool value)
     {
         byte* ptr = &data[offset];
         {
@@ -183,16 +183,16 @@
 
     //-------------------------------------
 
-    Cpp::ByteBuffer::ByteBuffer(long length)
+    Cpp::ByteBuffer::ByteBuffer(ulong length)
     {
         m_native = new ::ByteBuffer(length);
     }
 
-    String^ Cpp::ByteBuffer::getString(long offset)
+    String^ Cpp::ByteBuffer::getString(ulong offset)
     {
         return gcnew String(m_native->getString(offset).c_str());
     }
-    void Cpp::ByteBuffer::setString(long offset, String^ value)
+    void Cpp::ByteBuffer::setString(ulong offset, String^ value)
     {
         byte* ptr = &m_native->data[offset];
         {
@@ -206,51 +206,51 @@
         }
         return;
     }
-    int Cpp::ByteBuffer::getInt(long offset)
+    int Cpp::ByteBuffer::getInt(ulong offset)
     {
         return m_native->getInt(offset);
     }
-    void Cpp::ByteBuffer::setInt(long offset, int value)
+    void Cpp::ByteBuffer::setInt(ulong offset, int value)
     {
         m_native->setInt(offset, value);
     }
-    long Cpp::ByteBuffer::getLong(long offset)
+    long Cpp::ByteBuffer::getLong(ulong offset)
     {
         return m_native->getLong(offset);
     }
-    void Cpp::ByteBuffer::setLong(long offset, long value)
+    void Cpp::ByteBuffer::setLong(ulong offset, long value)
     {
         m_native->setLong(offset, value);
     }
-    float Cpp::ByteBuffer::getFloat(long offset)
+    float Cpp::ByteBuffer::getFloat(ulong offset)
     {
         return m_native->getFloat(offset);
     }
-    void Cpp::ByteBuffer::setFloat(long offset, float value)
+    void Cpp::ByteBuffer::setFloat(ulong offset, float value)
     {
         m_native->setFloat(offset, value);
     }
-    double Cpp::ByteBuffer::getDouble(long offset)
+    double Cpp::ByteBuffer::getDouble(ulong offset)
     {
         return m_native->getDouble(offset);
     }
-    void Cpp::ByteBuffer::setDouble(long offset, double value)
+    void Cpp::ByteBuffer::setDouble(ulong offset, double value)
     {
         m_native->setDouble(offset, value);
     }
-    char Cpp::ByteBuffer::getChar(long offset)
+    char Cpp::ByteBuffer::getChar(ulong offset)
     {
         return m_native->getChar(offset);
     }
-    void Cpp::ByteBuffer::setChar(long offset, char value)
+    void Cpp::ByteBuffer::setChar(ulong offset, char value)
     {
         m_native->setChar(offset, value);
     }
-    bool Cpp::ByteBuffer::getBool(long offset)
+    bool Cpp::ByteBuffer::getBool(ulong offset)
     {
         return m_native->getBool(offset);
     }
-    void Cpp::ByteBuffer::setBool(long offset, bool value)
+    void Cpp::ByteBuffer::setBool(ulong offset, bool value)
     {
         m_native->setBool(offset, value);
     }
